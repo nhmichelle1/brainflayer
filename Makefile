@@ -13,11 +13,7 @@ COMPILE = gcc $(CFLAGS)
 
 all: $(BINARIES)
 
-.git:
-	@echo 'This does not look like a cloned git repo. Unable to fetch submodules.'
-	@false
-
-secp256k1/.libs/libsecp256k1.a: .git
+secp256k1/.libs/libsecp256k1.a:
 	git submodule init
 	git submodule update
 	cd secp256k1; make distclean || true
@@ -27,7 +23,7 @@ secp256k1/.libs/libsecp256k1.a: .git
 
 secp256k1/include/secp256k1.h: secp256k1/.libs/libsecp256k1.a
 
-scrypt-jane/scrypt-jane.h: .git
+scrypt-jane/scrypt-jane.h:
 	git submodule init
 	git submodule update
 
